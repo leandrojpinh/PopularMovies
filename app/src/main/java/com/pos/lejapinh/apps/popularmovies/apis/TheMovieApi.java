@@ -1,4 +1,5 @@
 package com.pos.lejapinh.apps.popularmovies.apis;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.pos.lejapinh.apps.popularmovies.adapters.TheMovieAdapter;
@@ -16,8 +17,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class TheMovieApi implements TheMovieService {
 
 	private static TheMovieApi theMovieApi;
-	private final String base_url = "https://api.themoviedb.org/3/movie/popular?api_key=a6ab6c6e92a1444a6633b3d1b30eb4c9";
+	private final static String base_url = "https://api.themoviedb.org/";
 	public final String api_key = "a6ab6c6e92a1444a6633b3d1b30eb4c9";
+
+	public List<TheMovie> list;
 
 	private Retrofit retrofit;
 
@@ -43,18 +46,23 @@ public class TheMovieApi implements TheMovieService {
 	@Override
 	public Call<List<TheMovie>> getAllPopularMovies(String api_key) {
 		Call<List<TheMovie>> call = getTheMovieService().getAllPopularMovies(api_key);
+		try {
 
-		call.enqueue(new Callback<List<TheMovie>>() {
-			@Override
-			public void onResponse(Call<List<TheMovie>> call, Response<List<TheMovie>> response) {
-				List<TheMovie> movies = response.body();
-			}
+			call.enqueue(new Callback<List<TheMovie>>() {
+				@Override
+				public void onResponse(Call<List<TheMovie>> call, Response<List<TheMovie>> response) {
+					list = response.body();
+				}
 
-			@Override
-			public void onFailure(Call<List<TheMovie>> call, Throwable t) {
-				//Toast.makeText(context, t.getMessage(), Toast.LENGTH_SHORT);
-			}
-		});
+				@Override
+				public void onFailure(Call<List<TheMovie>> call, Throwable t) {
+					Log.i("", "!");
+				}
+			});
+
+		} catch (Exception e) {
+
+		}
 
 		return call;
 	}

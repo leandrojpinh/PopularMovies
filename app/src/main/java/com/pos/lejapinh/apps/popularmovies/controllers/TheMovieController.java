@@ -12,10 +12,8 @@ public class TheMovieController {
 
     public List<TheMovie> getAllPopularMovies() throws IOException {
         api = TheMovieApi.getInstance();
-        api.getTheMovieService().getAllPopularMovies(api.api_key);
+        api.getAllPopularMovies(api.api_key);
 
-        List<TheMovie> list = api.getTheMovieService().getAllPopularMovies(api.api_key).execute().body();
-
-        return list;
+        return api.list;
     }
 }
