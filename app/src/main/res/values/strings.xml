@@ -3,4 +3,20 @@
     <string name="str_txt_movie_name">Movie name</string>
     <string name="str_txt_movie_description">Movie description</string>
     <string name="str_item_btn_favorite">Add favorite</string>
+    <string name="str_txt_user_title">Register user</string>
+    <string name="str_txt_user_name">Name</string>
+    <string name="str_txt_user_email">E-mail</string>
+    <string name="str_txt_user_password">Password</string>
+    <string name="str_btn_add_user">Add</string>
+    <string name="str_txt_login_title">Login</string>
+    <string name="str_txt_login_email">Login</string>
+    <string name="str_txt_login_password">Login</string>
+    <string name="str_txt_login_login">Logon</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
 </resources>

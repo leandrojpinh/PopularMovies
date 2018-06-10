@@ -3,9 +3,14 @@ package com.pos.lejapinh.apps.popularmovies;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.pos.lejapinh.apps.popularmovies.data.MovieClient;
+import com.pos.lejapinh.apps.popularmovies.data.data_entities.Movie;
 import com.pos.lejapinh.apps.popularmovies.entities.TheMovie;
 import com.squareup.picasso.Picasso;
 
@@ -32,6 +37,28 @@ public class ItemActivity extends AppCompatActivity {
         movie_id = Integer.parseInt(getIntent().getStringExtra("movie_id"));
 
         InitializeComponents();
+
+        btn_favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MovieClient client = MovieClient.getInstance(getApplicationContext());
+                Movie m = new Movie();
+                m.setOriginal_language(tm.getOriginal_language());
+                m.setOriginal_title(tm.getOriginal_title());
+                m.setOverview(tm.getOverview());
+                m.setPopularity(tm.getPopularity());
+                m.setPoster_path(tm.getPoster_path());
+                m.setRelease_date(tm.getRelease_date());
+                m.setTitle(tm.getTitle());
+                m.setVideo(tm.getAdult());
+                m.setVote_average(tm.getVote_average());
+                m.setVote_count(tm.getVote_count());
+
+                client.insert(m);
+
+                Toast.makeText(getApplicationContext(), "Filme adicionado como Favorito.", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         new ClientTheMovieItem(movie_id).execute();
     }
